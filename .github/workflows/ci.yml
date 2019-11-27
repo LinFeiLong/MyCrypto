@@ -1,4 +1,4 @@
-name: GitHub CI 2
+name: GitHub CI
 
 on: [push]
 
@@ -143,57 +143,57 @@ jobs:
 #     - name: yarn report-coverage
 #       run: yarn report-coverage
 
-  electron-osx:
-    name: Build el:osx
-    ## Executes only if pre-build is true
-    needs: [pre-build]
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macOS-latest]
-    env:
-      ELECTRON_CACHE: $HOME/.cache/electron
-      ELECTRON_BUILDER_CACHE: $HOME/.cache/electron-builder
+#   electron-osx:
+#     name: Build el:osx
+#     ## Executes only if pre-build is true
+#     needs: [pre-build]
+#     runs-on: ${{ matrix.os }}
+#     strategy:
+#       matrix:
+#         os: [macOS-latest]
+#     env:
+#       ELECTRON_CACHE: $HOME/.cache/electron
+#       ELECTRON_BUILDER_CACHE: $HOME/.cache/electron-builder
 
-    steps:
-    ## actions/checkout@v1 retrieves project from the git branch
-    - uses: actions/checkout@v1
+#     steps:
+#     ## actions/checkout@v1 retrieves project from the git branch
+#     - uses: actions/checkout@v1
 
-    - name: Retrieve node version from .nvmrc
-      run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
-      id: nvm
+#     - name: Retrieve node version from .nvmrc
+#       run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+#       id: nvm
 
-    - name: Setup node ${{ steps.nvm.outputs.NVMRC }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: "${{ steps.nvm.outputs.NVMRC }}"
+#     - name: Setup node ${{ steps.nvm.outputs.NVMRC }}
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: "${{ steps.nvm.outputs.NVMRC }}"
 
-    - name: Restoring node modules
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+#     - name: Restoring node modules
+#       uses: actions/cache@v1
+#       with:
+#         path: node_modules
+#         key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
 
-    - name: yarn build:electron:osx
-      run: yarn build:electron:osx
+#     - name: yarn build:electron:osx
+#       run: yarn build:electron:osx
 
-    - name: ls -la dist/electron-builds
-      run: ls -la dist/electron-builds
+#     - name: ls -la dist/electron-builds
+#       run: ls -la dist/electron-builds
 
-    - name: Read app version
-      id: version
-      run:  echo "##[set-output name=VERSION;]$(cat package.json | grep -m1 version | sed 's/...version....//' | sed 's/.\{2\}$//')"
+#     - name: Read app version
+#       id: version
+#       run:  echo "##[set-output name=VERSION;]$(cat package.json | grep -m1 version | sed 's/...version....//' | sed 's/.\{2\}$//')"
 
-    - name: "Save standalone_${{ steps.version.outputs.VERSION }}_MyCrypto.zip to artifacts"
-      uses: actions/upload-artifact@v1
-      with:
-        name: "standalone_${{ steps.version.outputs.VERSION }}_MyCrypto.zip"
-        path: "dist/electron-builds/MyCrypto-${{ steps.version.outputs.VERSION }}-mac.zip"
-    - name: "Save mac_${{ steps.version.outputs.VERSION }}_MyCrypto.dmg to artifacts"
-      uses: actions/upload-artifact@v1
-      with:
-        name: "mac_${{ steps.version.outputs.VERSION }}_MyCrypto.dmg"
-        path: "dist/electron-builds/MyCrypto-${{ steps.version.outputs.VERSION }}.dmg"
+#     - name: "Save standalone_${{ steps.version.outputs.VERSION }}_MyCrypto.zip to artifacts"
+#       uses: actions/upload-artifact@v1
+#       with:
+#         name: "standalone_${{ steps.version.outputs.VERSION }}_MyCrypto.zip"
+#         path: "dist/electron-builds/MyCrypto-${{ steps.version.outputs.VERSION }}-mac.zip"
+#     - name: "Save mac_${{ steps.version.outputs.VERSION }}_MyCrypto.dmg to artifacts"
+#       uses: actions/upload-artifact@v1
+#       with:
+#         name: "mac_${{ steps.version.outputs.VERSION }}_MyCrypto.dmg"
+#         path: "dist/electron-builds/MyCrypto-${{ steps.version.outputs.VERSION }}.dmg"
 
   electron-linux:
     name: Build el:linux
