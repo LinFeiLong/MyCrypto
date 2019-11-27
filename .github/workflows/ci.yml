@@ -83,7 +83,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macOS-latest, ubuntu-latest]
+        os: [
+#           macOS-latest,
+          ubuntu-latest
+        ]
     env:
       ELECTRON_CACHE: $HOME/.cache/electron
       ELECTRON_BUILDER_CACHE: $HOME/.cache/electron-builder
