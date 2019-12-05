@@ -104,7 +104,7 @@
     "@types/classnames": "2.2.3",
     "@types/dom-clipboard-api": "1.0.1",
     "@types/enzyme": "3.1.8",
-    "@types/enzyme-adapter-react-16": "1.0.1",
+    "@types/enzyme-adapter-react-16": "1.0.5",
     "@types/events": "1.2.0",
     "@types/history": "4.6.2",
     "@types/html2canvas": "0.0.33",
