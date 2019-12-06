@@ -35,7 +35,7 @@ jobs:
 
       - name: Setup node ${{ steps.engines.outputs.NODE_VERSION }}
         id: setup-node
-        need: [engines]
+        needs: [engines]
         uses: actions/setup-node@master
         with:
           node-version: ${{ steps.engines.outputs.NODE_VERSION }}
