@@ -11,9 +11,6 @@ jobs:
       matrix:
         os: [windows-latest]
     steps:
-      - name: Retrieve project from the git branch
-        uses: actions/checkout@v1
-
       - name: Print current engines' versions
         run: >
           echo "node: $(node -v)";
@@ -32,6 +29,9 @@ jobs:
           Write-Output "##[set-output name=NODE_VERSION;]$($nodeVersion)";
           Write-Output "##[set-output name=NPM_VERSION;]$($npmVersion)";
           Write-Output "##[set-output name=YARN_VERSION;]$($yarnVersion)";
+
+      - name: Retrieve project from the git branch
+        uses: actions/checkout@v1
 
       - name: Setup node ${{ steps.engines.outputs.NODE_VERSION }}
         uses: actions/setup-node@master
