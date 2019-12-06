@@ -34,7 +34,7 @@ jobs:
           # Write-Output "##[set-output name=YARN_VERSION;]$($yarnVersion)";
 
       - name: Setup node ${{ steps.engines.outputs.NODE_VERSION }}
-        id: node
+        id: setup-node
         need: [engines]
         uses: actions/setup-node@master
         with:
