@@ -27,15 +27,13 @@ jobs:
           $hashtable = Get-Content -Raw -Path ./package.json | ConvertFrom-Json -AsHashtable;
           echo $hashtable.engines;
           $nodeVersion = $hashtable.engines.node;
-          # $npmVersion = $hashtable.engines.npm;
-          # $yarnVersion = $hashtable.engines.yarn.toString();
+          $npmVersion = $hashtable.engines.npm;
+          $yarnVersion = $hashtable.engines.yarn;
           Write-Output "##[set-output name=NODE_VERSION;]$($nodeVersion)";
-          # Write-Output "##[set-output name=NPM_VERSION;]$($npmVersion)";
-          # Write-Output "##[set-output name=YARN_VERSION;]$($yarnVersion)";
+          Write-Output "##[set-output name=NPM_VERSION;]$($npmVersion)";
+          Write-Output "##[set-output name=YARN_VERSION;]$($yarnVersion)";
 
       - name: Setup node ${{ steps.engines.outputs.NODE_VERSION }}
-        id: setup-node
-        needs: [engines]
         uses: actions/setup-node@master
         with:
           node-version: ${{ steps.engines.outputs.NODE_VERSION }}
