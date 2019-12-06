@@ -124,7 +124,7 @@ jobs:
 #         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
     - name: Read .nvmrc
-      run: echo "##[set-output name=NVMRC;]$(cat package.json | grep \"node\": |  sed 's/^ *//;s/ *$//;s/\"node\":\ \"//;s/\",//' )"
+      run: echo "##[set-output name=NVMRC;]$(cat package.json | grep '\"node\":' | sed 's/^ *//;s/ *$//;s/\"node\":\ \"//;s/\",//' )"
       id: nvm
 
     - name: Setup node ${{ steps.nvm.outputs.NVMRC }}
