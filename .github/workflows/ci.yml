@@ -3,79 +3,78 @@ name: GitHub CI
 on: [push]
 
 jobs:
-## Windows pre-build is functional uncomment it for later usage
 ## WINDOWS-PREBUILD START ##
-#   pre-build-and-build-windows:
-#     name: Build el:win
-#     runs-on: ${{ matrix.os }}
-#     strategy:
-#       matrix:
-#         os: [windows-latest]
-#     steps:
-#       ## actions/checkout@v1 retrieves project from the git branch
-#       - uses: actions/checkout@v1
-#       - name: Retrieve node version from .nvmrc
-#         id: nvm
-#         run: $nvm = Get-Content .nvmrc; Write-Output "##[set-output name=NVMRC;]$($nvm)"
-#       - uses: actions/setup-node@master
-#         with:
-#           node-version: ${{ steps.version.outputs.NVMRC }}
-#       - name: install node tools
-#         run: npm install --global --production windows-build-tools@4.0.0
-#       - name: install node-gyp
-#         run: npm install --global node-gyp@latest
-#       - name: Set node config to use python2.7
-#         run: npm config set python python2.7
-#       - name: Set node config to set msvs_version to 2015
-#         run: npm config set msvs_version 2015
-#       - name: Work around for Windows Server 2019
-#         run: set path=%path%;'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin'
+  pre-build-and-build-windows:
+    name: Build el:win
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+    steps:
+      ## actions/checkout@v1 retrieves project from the git branch
+      - uses: actions/checkout@v1
+      - name: Retrieve node version from .nvmrc
+        id: nvm
+        run: $nvm = Get-Content .nvmrc; Write-Output "##[set-output name=NVMRC;]$($nvm)"
+      - uses: actions/setup-node@master
+        with:
+          node-version: ${{ steps.version.outputs.NVMRC }}
+      - name: install node tools
+        run: npm install --global --production windows-build-tools@4.0.0
+      - name: install node-gyp
+        run: npm install --global node-gyp@latest
+      - name: Set node config to use python2.7
+        run: npm config set python python2.7
+      - name: Set node config to set msvs_version to 2015
+        run: npm config set msvs_version 2015
+      - name: Work around for Windows Server 2019
+        run: set path=%path%;'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin'
 
-#       - name: Cache node modules
-#         id: cache
-#         uses: actions/cache@v1
-#         with:
-#           path: node_modules
-#           ## Check cache based on yarn.lock hashfile
-#           key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
-#           restore-keys: |
-#             ${{ runner.OS }}-build-${{ env.cache-name }}-
-#             ${{ runner.OS }}-build-
-#             ${{ runner.OS }}-
+      - name: Cache node modules
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          ## Check cache based on yarn.lock hashfile
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
 
-#       - name: Install Dependencies
-#         ## If no cache is found, install dependencies
-#         if: steps.cache.outputs.cache-hit != 'true'
-#         run: yarn install
+      - name: Install Dependencies
+        ## If no cache is found, install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install
 
-#       - name: yarn tslint
-#         run: yarn tslint
+      - name: yarn tslint
+        run: yarn tslint
 
-#       - name: yarn tscheck
-#         run: yarn tscheck
+      - name: yarn tscheck
+        run: yarn tscheck
 
-#       - name: yarn test:coverage -- --maxWorkers=2
-#         run: yarn test:coverage -- --maxWorkers=2
+      - name: yarn test:coverage -- --maxWorkers=2
+        run: yarn test:coverage -- --maxWorkers=2
 
-# ##    NOT WORKING
-# #     - name: yarn report-coverage
-# #       run: yarn report-coverage
+##    NOT WORKING
+#     - name: yarn report-coverage
+#       run: yarn report-coverage
 
-#       - name: yarn build:electron:windows
-#         run: yarn build:electron:windows
+      - name: yarn build:electron:windows
+        run: yarn build:electron:windows
 
-#       - name: ls dist/electron-builds
-#         run: ls dist/electron-builds
+      - name: ls dist/electron-builds
+        run: ls dist/electron-builds
 
-#       - name: Read MyCrypto version from package.json
-#         id: version
-#         run: $json = Get-Content package.json | ConvertFrom-Json; Write-Output "##[set-output name=VERSION;]$($json.version)"
+      - name: Read MyCrypto version from package.json
+        id: version
+        run: $json = Get-Content package.json | ConvertFrom-Json; Write-Output "##[set-output name=VERSION;]$($json.version)"
 
-#       - name: Save windows_${{ steps.version.outputs.VERSION }}_MyCrypto.exe to artifacts
-#         uses: actions/upload-artifact@v1
-#         with:
-#           name: "windows_${{ steps.version.outputs.VERSION }}_MyCrypto.exe"
-#           path: "dist/electron-builds/MyCrypto Setup ${{ steps.version.outputs.VERSION }}.exe"
+      - name: Save windows_${{ steps.version.outputs.VERSION }}_MyCrypto.exe to artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: "windows_${{ steps.version.outputs.VERSION }}_MyCrypto.exe"
+          path: "dist/electron-builds/MyCrypto Setup ${{ steps.version.outputs.VERSION }}.exe"
 ## WINDOWS-PREBUILD END ##
 
   pre-build:
