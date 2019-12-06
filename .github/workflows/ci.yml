@@ -13,23 +13,22 @@ jobs:
     steps:
       - name: Retrieve project from the git branch
         uses: actions/checkout@v1
+
       - name: Print current engines' versions
         run: >
           echo "node: $(node -v)";
           echo "npm: $(npm -v)";
           echo "yarn: $(yarn -v)";
           echo "python: $(python -V)";
+
       - name: Retrieve engines' versions from package.json to env variables
         id: engines
         run: >
           $hashtable = Get-Content -Raw -Path ./package.json | ConvertFrom-Json -AsHashtable;
-
           echo $hashtable.engines;
-
           $nodeVersion = $hashtable.engines.node;
           # $npmVersion = $hashtable.engines.npm;
           # $yarnVersion = $hashtable.engines.yarn.toString();
-
           Write-Output "##[set-output name=NODE_VERSION;]$($nodeVersion)";
           # Write-Output "##[set-output name=NPM_VERSION;]$($npmVersion)";
           # Write-Output "##[set-output name=YARN_VERSION;]$($yarnVersion)";
@@ -125,7 +124,7 @@ jobs:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
     - name: Read .nvmrc
-      run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+      run: echo "##[set-output name=NVMRC;]$(cat package.json | sed -n 's|.*"node":"\([^"]*\)".*|\1|p')"
       id: nvm
 
     - name: Setup node ${{ steps.nvm.outputs.NVMRC }}
@@ -182,7 +181,7 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Retrieve node version from .nvmrc
-      run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+      run: echo "##[set-output name=NVMRC;]$(cat package.json | sed -n 's|.*"node":"\([^"]*\)".*|\1|p')"
       id: nvm
 
     - name: Setup node ${{ steps.nvm.outputs.NVMRC }}
@@ -238,7 +237,7 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Retrieve node version from .nvmrc
-      run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+      run: echo "##[set-output name=NVMRC;]$(cat package.json | sed -n 's|.*"node":"\([^"]*\)".*|\1|p')"
       id: nvm
 
     - name: Setup node ${{ steps.nvm.outputs.NVMRC }}
