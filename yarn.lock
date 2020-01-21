@@ -1539,14 +1539,14 @@
   resolved "https://registry.yarnpkg.com/@parity/erc681/-/erc681-0.1.1.tgz#0ade5233751011c15d5e75bd2bb583a9ba450a5e"
   integrity sha512-OGDAWbAcm4mh+wzw6uBYxw0OJtqJ+39W3pOXl0W93d2p/cH7ppfvunwf7irEPw0FPiAIuR/F77nU1zMKNhm8Dg==
 
-"@parity/qr-signer@0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@parity/qr-signer/-/qr-signer-0.3.1.tgz#00a983c7311a3d14701fae0b95f014e8a2a77618"
-  integrity sha512-OhggRIP6k9ZXJlXoye3auGbGyDVr0s3lv2vyBtAzwEItTur0JtkDnz4Z6GuPBbP5MnYuokPQ2TNWwE8q54BQ6A==
+"@parity/qr-signer@0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@parity/qr-signer/-/qr-signer-0.3.2.tgz#ad2ea95627c5fddb73f31a6950f8cf23c350c89f"
+  integrity sha512-6VMBzxkB2KecC8ZucAEy1DQ+4ZhcHwlffkMitbunn1Xw1duPXZ0b/suwDFBNZ3e9pRE3ErdxSUs2QKkIxDgt8w==
   dependencies:
     "@parity/erc681" "0.1.1"
-    qrcode-generator "1.4.0"
-    react-qr-reader "2.1.0"
+    qrcode-generator "1.4.1"
+    react-qr-reader "2.1.2"
 
 "@reach/alert@^0.1.2":
   version "0.1.5"
@@ -8688,7 +8688,7 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jsqr@^1.0.1:
+jsqr@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/jsqr/-/jsqr-1.2.0.tgz#f93fc65fa7d1ded78b1bcb020fa044352b04261a"
   integrity sha512-wKcQS9QC2VHGk7aphWCp1RrFyC0CM6fMgC5prZZ2KV/Lk6OKNoCod9IR6bao+yx3KPY0gZFC5dc+h+KFzCI0Wg==
@@ -11056,10 +11056,10 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qrcode-generator@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/qrcode-generator/-/qrcode-generator-1.4.0.tgz#23521ae5d13658adb745a38f19e00c00f9b8488c"
-  integrity sha512-sjjYaKTviJVps3xlnaDBx4xGEqVL0f6bRCd0Q2pPwCUzbrMZ5dXYOJAT7DqXGqXpb1p+vPV3nc122fAsAj6wug==
+qrcode-generator@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/qrcode-generator/-/qrcode-generator-1.4.1.tgz#bfb6760e05d12c39df8acd60a0d459bdb2fa0756"
+  integrity sha512-KOdSAyFBPf0/5Z3mra4JfSbjrDlUn2J3YH8Rm33tRGbptxP4vhogLWysvkQp8mp5ix9u80Wfr4vxHXTeR9o0Ug==
 
 qrcode@1.4.4:
   version "1.4.4"
@@ -11360,14 +11360,14 @@ react-popper@^1.3.6:
     typed-styles "^0.0.7"
     warning "^4.0.2"
 
-react-qr-reader@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-qr-reader/-/react-qr-reader-2.1.0.tgz#f429c196675a710926da1cc9057223b79358da75"
-  integrity sha512-B/1xHv1IAnZqUSR0l0JEJnam4zll1aNgPRVau+Gw8pAFcTAsYXu44JzN/hW1gUdI7BHAP9klYj7tEy4mwOvqtQ==
+react-qr-reader@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-qr-reader/-/react-qr-reader-2.1.2.tgz#ff3d7d377d3ffbd9d78a0947ca04221c2f180e15"
+  integrity sha512-SyRrRRRS7XcIyX8x6tb+mgcMqYZw6Admf4vlnUO/Z21nJklf6WILmP4jstd1W5tNlonvuC/S8R8/doIuZBgVjA==
   dependencies:
-    jsqr "^1.0.1"
+    jsqr "^1.1.1"
     prop-types "^15.5.8"
-    webrtc-adapter "^6.1.1"
+    webrtc-adapter "^6.4.0"
 
 react-redux@5.0.7:
   version "5.0.7"
@@ -14422,7 +14422,7 @@ webpack@4.41.5:
     watchpack "^1.6.0"
     webpack-sources "^1.4.1"
 
-webrtc-adapter@^6.1.1:
+webrtc-adapter@^6.4.0:
   version "6.4.8"
   resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-6.4.8.tgz#eeca3f0d5b40c0e629b865ef2a936a0b658274de"
   integrity sha512-YM8yl545c/JhYcjGHgaCoA7jRK/KZuMwEDFeP2AcP0Auv5awEd+gZE0hXy9z7Ed3p9HvAXp8jdbe+4ESb1zxAw==
