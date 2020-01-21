@@ -40,7 +40,7 @@
     "jsonschema": "1.2.4",
     "jspdf": "1.5.3",
     "lodash": "4.17.13",
-    "moment": "2.22.1",
+    "moment": "2.24.0",
     "qrcode": "1.4.4",
     "query-string": "6.0.0",
     "ramda": "0.26.1",
